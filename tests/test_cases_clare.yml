@@ -6,8 +6,14 @@ test_cases:
     - user: "can you recommend me a book"
       assertions: 
       - flow_started: "ask_random_author"
+      assertions: 
+        - flow_started: "ask_random_author"
     - utter: utter_ask_author_of_choice
     - user: "jk rowling"
+      assertions:
+        - slot_was_set:
+          - name: "author_of_choice"
+            value: "jk rowling"
     - bot: "Here is a random jk rowling book for you: 'Fantastic Beasts and Where to Find Them'."
     - user: "4"
     - utter: utter_transfer_complete

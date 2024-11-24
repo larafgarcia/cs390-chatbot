@@ -1,0 +1,13 @@
+test_cases:
+  - test_case: d3bce1984aaf4c6dbddc1c30c31a2c34
+    steps:
+    - user: "Can you recommend me a book that other people have liked that is similar to the Da Vinci Code"
+      assertions:
+        - action_executed: "recommend_book_other_people_liked"
+        - slot_was_set:
+          - name: "book_request"
+            value: "the Da Vinci Code"
+    - utter: utter_give_three_books
+    - utter: utter_can_do_something_else
+    - user: "no"
+    - utter: utter_free_chitchat_response

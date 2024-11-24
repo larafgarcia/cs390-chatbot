@@ -1,0 +1,15 @@
+test_cases:
+  - test_case: 641880f704574afdbd0c5fbb1f6c9606
+    steps:
+    - user: "where can i buy 1984"
+    - utter: utter_ask_location
+    - user: "berlin"
+      assertion: 
+        - slot_was_set:
+          - name: "location"
+          - value: "berlin"
+        - action_executed: "utter_give_location" 
+    - utter: utter_give_location
+    - utter: utter_can_do_something_else
+    - user: "no"
+    - utter: utter_free_chitchat_response

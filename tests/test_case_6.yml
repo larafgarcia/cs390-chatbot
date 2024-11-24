@@ -1,0 +1,21 @@
+test_cases:
+  - test_case: 9f85e3f2a360442cb5d263fde41d2541
+    steps:
+    - user: "Hi"
+    - utter: utter_welcome
+    - utter: utter_can_do_something_else
+    - user: "Can you get me the description of \"1984\""
+      assertions:
+        - slot_was_set:
+          - name: "book_description_request"
+            value: "1984"
+        - action_executed: "action_get_description"
+        - action_executed: "utter_give_description"
+    - bot: "The link for that work in OpenLibrary is https://openlibrary.org//works/OL1168083W"
+    - bot: "I'm looking for more details..."
+    - utter: utter_give_description
+    - utter: utter_can_do_something_else
+    - user: "no"
+    - utter: utter_free_chitchat_response
+
+

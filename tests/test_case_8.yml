@@ -1,0 +1,9 @@
+test_cases:
+  - test_case: 19547b29f784446583c4a63e415bf5ef
+    steps:
+    - user: "hi"
+    - utter: utter_welcome
+    - utter: utter_can_do_something_else
+    - user: "can you recommend me a stephen king book"
+    - utter: utter_fail
+    - utter: utter_can_do_something_else
