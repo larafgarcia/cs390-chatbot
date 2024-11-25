@@ -105,7 +105,7 @@ flows:
       - action: utter_give_three_books
 
   recommend_surprise:
-    description: This flow gives a book recommendation if the user asks to be surprised
+    description: This flow gives a book recommendation only if the user asks to be surprised
     steps:
       - action: utter_give_game_changers
 

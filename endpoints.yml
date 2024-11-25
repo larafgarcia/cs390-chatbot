@@ -44,3 +44,6 @@ action_endpoint:
 nlg:
   type: rephrase
   rephrase_all: true
+  llm:
+    model: gpt-3.5-turbo
+    temperature: 1
