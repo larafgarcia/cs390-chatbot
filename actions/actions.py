@@ -57,7 +57,7 @@ class ActionGetRandomBookVolume(Action):
             volumes = response.json()["docs"][:5]
 
             if volumes:
-                dispatcher.utter_message(text=f"Aha! I found books by that author!")
+                dispatcher.utter_message(text=f"Aha! I found books by {author}!")
                 # Select a random volume
                 random_volume = random.choice(volumes)
                 volume_title = random_volume.get("title", "Unknown Title")
@@ -78,7 +78,7 @@ class ActionGetDescription(Action):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
-        api_seed_url = "https://openlibrary.org/"
+        api_seed_url = "https://openlibrary.org"
         api_search_url = "https://openlibrary.org/search.json"
         book = tracker.get_slot("book_description_request")
 
