@@ -1,0 +1,165 @@
+test_cases:
+  - test_case: 641880f704574afdbd0c5fbb1f6c9606
+    steps:
+      - user: "where can i buy 1984"
+      - utter: utter_ask_location
+      - user: "berlin"
+        assertions:
+          - slot_was_set:
+            - name: "location"
+              value: "berlin"
+      
+  - test_case: ebd4dfb3142e49789f338d8e7bf4123f
+    steps:
+    - user: "Hi"
+      assertions: 
+        - flow_started: "starter_flow" 
+        - action_executed: "utter_welcome"     
+    - utter: utter_welcome
+    - utter: utter_can_do_something_else
+    - user: "no"
+    - utter: utter_free_chitchat_response       
+
+  - test_case: 9f85e3f2a360442cb5d263fde41d2541
+    steps:
+    - user: "Hi"
+    - utter: utter_welcome
+    - utter: utter_can_do_something_else
+    - user: "Can you get me the description of \"1984\""
+      assertions:
+        - slot_was_set:
+          - name: "book_description_request"
+            value: "1984"
+        - action_executed: "utter_give_description"
+    - bot: "The link for that work in OpenLibrary is https://openlibrary.org//works/OL1168083W"
+    - bot: "I'm looking for more details..."
+    - utter: utter_give_description
+    - utter: utter_can_do_something_else
+    - user: "no"
+    - utter: utter_free_chitchat_response         
+  
+  - test_case: d3bce1984aaf4c6dbddc1c30c31a2c34
+    steps:
+    - user: "Can you recommend me a book that other people have liked that is similar to the Da Vinci Code"
+      assertions:
+        - slot_was_set:
+          - name: "book_request"
+            value: "Da Vinci Code"
+    - utter: utter_give_three_books
+    - utter: utter_can_do_something_else
+    - user: "no"
+    - utter: utter_free_chitchat_response
+
+  - test_case: 50bade13a3884a66829b209ae595485b
+    steps:
+    - user: "hi"
+    - utter: utter_welcome
+    - utter: utter_can_do_something_else
+    - user: "I want to get a surprise book"
+      assertions:
+        - flow_started: "recommend_surprise"
+        - action_executed: "utter_give_game_changers"
+    - utter: utter_give_game_changers
+    - utter: utter_can_do_something_else
+    - user: "no"
+    - utter: utter_free_chitchat_response
+
+  # - test_case: e671c1365bcc400a8bbe1bb3f5a17508
+  #   steps:
+  #   - user: "Hi"
+  #   - utter: utter_welcome
+  #   - utter: utter_can_do_something_else
+  #   - user: "can I get a thriller"
+  #     assertions: 
+  #       - flow_started: "recommend_book_by_genre"
+  #       - action_executed: "utter_give_three_books"
+  #       - slot_was_set:
+  #         - name: "genre"
+  #           value: "thriller"
+  #   - bot: "I found thriller books!"
+  #   - utter: utter_give_three_books
+  #   - utter: utter_ask_wants_description
+  #   - user: "Yes, could i get a description for all of them"
+  #   - bot: "The link for that work in OpenLibrary is https://openlibrary.org//works/OL1168083W"
+  #   - bot: "I'm looking for more details..."
+  #   - utter: utter_give_description
+  #   - utter: utter_flow_continue_interrupted
+  #   - utter: utter_ask_wants_description
+  #   - user: "no, thank you"
+  #     assertions:
+  #       - flow_completed:
+  #           flow_id: "recommend_book_by_genre"
+  #   - utter: utter_free_chitchat_response
+  #   - utter: utter_ask_wants_description
+  #   - user: "no"
+  #     assertions:
+  #     - flow_completed:
+  #         flow_id: "recommend_book_by_genre"
+  #   - utter: utter_free_chitchat_response
+  #   - utter: utter_ask_wants_description
+
+  # - test_case: 91fc9caf461d4e2294d8ddeab28b0b67
+  #   steps:
+  #   - user: "hi"
+  #   - utter: utter_free_chitchat_response
+  #   - user: "can you recommend me a book"
+  #   - utter: utter_ask_author_of_choice
+  #   - user: "jk rowling"
+  #     assertions:
+  #       - slot_was_set:
+  #         - name: "author_of_choice"
+  #           value: "jk rowling"
+  #   - bot: "Here is a random jk rowling book for you: 'Fantastic Beasts and Where to Find Them'."
+  #   - user: "4"
+  #   - utter: utter_transfer_complete
+  #   - utter: utter_can_do_something_else
+  #   - user: "no"
+  #   - utter: utter_free_chitchat_response
+
+  - test_case: 8ee2bcb76d5d4da39d42318d24cf0929
+    steps:
+    - user: "I want a jane austen book"
+      assertions:
+        - slot_was_not_set:
+          - name: "author"
+            value: "George Orwell"
+    - bot: "Aha! I found books by that author!"
+    - utter: utter_give_single_book
+    - utter: utter_ask_wants_description
+    - user: "no"
+    - utter: utter_can_do_something_else
+  
+  - test_case: 7ab6413584cd47d7a5ae24a35483c614
+    steps:
+    - user: "hi"
+    - utter: utter_welcome
+    - utter: utter_can_do_something_else
+    - user: "goodbye"
+      assertions:
+        - flow_started: "end_flow"
+    - utter: utter_goodbye
+    - utter: utter_can_do_something_else
+
+  - test_case: 9db74eeac2a54f77b5925deba5896d41
+    steps:
+    - user: "hi"
+    - utter: utter_welcome
+    - utter: utter_can_do_something_else
+    - user: "who worked on this project?"
+      assertions:
+        - flow_started: "pattern_search"
+    - bot: "Lara, Clare, and Diego worked on this project according to the FAQ document."
+    - utter: utter_can_do_something_else
+  
+  - test_case: 19547b29f784446583c4a63e415bf5ef
+    steps:
+    - user: "hi"
+    - utter: utter_welcome
+    - utter: utter_can_do_something_else
+    - user: "can you recommend me a stephen king book"
+      assertions:
+        - slot_was_set:
+          - name: "author"
+            value: "Stephen King"
+    - utter: utter_fail
+    - utter: utter_can_do_something_else
