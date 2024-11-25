@@ -57,7 +57,7 @@ class ActionGetRandomBookVolume(Action):
             volumes = response.json()["docs"][:5]
 
             if volumes:
-                dispatcher.utter_message(text=f"Aha! I found books by that author!")
+                dispatcher.utter_message(text=f"Aha! I found books by {author}!")
                 # Select a random volume
                 random_volume = random.choice(volumes)
                 volume_title = random_volume.get("title", "Unknown Title")
